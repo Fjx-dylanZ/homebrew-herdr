@@ -5,9 +5,11 @@ class Herdr < Formula
   head "https://github.com/Fjx-dylanZ/herdr.git", branch: "master"
 
   depends_on "rust" => :build
-  depends_on "zig" => :build
+  depends_on "zig@0.16" => :build
 
   def install
+    ENV.prepend_path "PATH", Formula["zig@0.16"].opt_bin
+
     system "cargo", "install", *std_cargo_args
 
     generate_completions_from_executable(bin/"herdr", "completion")
