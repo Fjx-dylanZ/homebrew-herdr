@@ -13,7 +13,7 @@ class HerdrCore < Formula
   depends_on "zig@0.16" => :build
 
   def install
-    ENV.prepend_path "PATH", Formula["zig@0.16"].opt_bin
+    ENV.prepend_path "PATH", formula_opt_bin("zig@0.16")
     system "cargo", "install", *std_cargo_args(path: "crates/herdr-core")
     bin.install_symlink "herdr-core" => "hc"
   end
